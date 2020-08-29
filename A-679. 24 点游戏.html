@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Algorithm 679</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+    <!-- pageheader
+    ================================================== -->
+    <div class="s-pageheader">
+
+        <header class="header">
+            <div class="header__content row">
+
+                <div class="header__logo">
+                    <a class="logo" href="index.html">
+                        <img src="images/logo.svg" alt="Homepage">
+                    </a>
+                </div> <!-- end header__logo -->
+
+
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+                <nav class="header__nav-wrap">
+
+                    <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                    <ul class="header__nav">
+                        <li><a href="index.html" title="">Home</a></li>
+                        
+                    </ul> <!-- end header__nav -->
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav> <!-- end header__nav-wrap -->
+
+            </div> <!-- header-content -->
+        </header> <!-- header -->
+
+    </div> <!-- end s-pageheader -->
+
+
+    <!-- s-content
+    ================================================== -->
+    <section class="s-content s-content--narrow s-content--no-padding-bottom">
+
+        <article class="row format-standard">
+
+            <div class="s-content__header col-full">
+                <h1 class="s-content__header-title">
+                    679. 24点游戏
+                </h1>
+                <ul class="s-content__header-meta">
+                    <li class="date">August 28, 2020</li>
+                    <li class="cat">
+                        <a >Leetcode</a>
+                    </li>
+                </ul>
+            </div> <!-- end s-content__header -->
+    
+            <div class="s-content__media col-full">
+                <div class="s-content__post-thumb">
+                    <img src="images/photo/000035.JPG" 
+                         srcset="images/photo/000035.JPG 2000w, 
+                                 images/photo/000035.JPG 1000w, 
+                                 images/photo/000035.JPG 500w" 
+                         sizes="(max-width: 2000px) 100vw, 2000px" alt="" >
+                </div>
+            </div> <!-- end s-content__media -->
+
+            <div class="col-full s-content__main">
+
+                <p class="lead">你有 4 张写有 1 到 9 数字的牌。你需要判断是否能通过 *，/，+，-，(，) 的运算得到 24。</p>
+				<p class="lead">示例 1：</p>
+				<p class="lead"></p>
+				<p class="lead">输入： [4, 1, 8, 7]</p>
+				<p class="lead">输出： True</p>
+				<p class="lead">说明:(8-4) * (7-1) = 24</p>
+				<p class="lead">示例 2：</p>
+				<p class="lead"></p>
+				<p class="lead">输入： [1, 2, 1, 2]</p>
+				<p class="lead">输出： False</p>
+ 
+
+
+                
+				<p>本来以为这题是要用字符串加正则表达式啥的做，结果做不出看了题解才发现好像只有暴力解的做法【当然这个暴力解仔细一算竟然是个O(1)？！</p>
+				<p>总的思路就是四个里面选两个然后算好跟接下来里面选一个再继续套路算完跟最后一个一起算得出答案，然后遍历答案。</p>
+				<p>好像有点套娃，总而言之就是4选2->1+剩余2个出1->1+剩余1个->答案(24->ok; 不是24,重算)。</p>
+<!--                <h2>Large Heading</h2>
+
+                <p>Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus <a href="http://#">omnis voluptas assumenda est</a> id quod maxime placeat facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et.</p>
+
+                <blockquote><p>This is a simple example of a styled blockquote. A blockquote tag typically specifies a section that is quoted from another source of some sort, or highlighting text in your post.</p></blockquote>
+
+                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+
+                <h3>Smaller Heading</h3>
+
+                <p>Dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
+ -->
+<pre><code>
+    class Solution {
+        public final int TARGET = 24;
+        public final double EPSILON = 1e-6;
+        public final int ADD = 0, MULTIPLY = 1, SUBSTRACT = 2, DIVIDE = 3;
+        public boolean judgePoint24(int[] nums) {
+            List<Double> ans = new ArrayList<Double>();
+            for (int num : nums){
+                ans.add((double) num);
+            }
+            return solvePoint(ans);
+        }
+        public boolean solvePoint(List<Double> list){
+            // if list's size is 0, then false;
+            if (list.size() == 0) return false;
+            // if list's size is 1, then compare to target;
+            if (list.size() == 1){
+                return Math.abs(list.get(0) - TARGET) < EPSILON;
+            }
+            int size = list.size();
+            // pick two numbers from the list first, 
+            // and of course they shoule not be the same;
+            for (int i = 0; i < size; i++){
+                for (int j = 0; j < size; j++){
+                    if (i != j){
+                        // create a new list for the later dfs;
+                        List<Double> list2 = new ArrayList<Double>();
+                        // put the numbers which are not selected into the new list;
+                        for (int k = 0; k < size; k++){
+                            if (k != i && k != j){
+                                list2.add(list.get(k));
+                            }
+                        }
+                        // for the i-th and j-th, just calculate them by brute force;
+                        // then add the result to new list
+                        for (int k = 0; k < 4; k++){
+                            // for add and multiply, we just need to calculate once;
+                            if (k < 2 && i > j) continue;
+                            if (k == ADD){
+                                list2.add(list.get(i) + list.get(j));
+                            } else if (k == MULTIPLY) {
+                                list2.add(list.get(i) * list.get(j));
+                            }else if (k == SUBSTRACT) {
+                                list2.add(list.get(i) - list.get(j));
+                            }else if (k == DIVIDE) {
+                                // the i-th can't be zero;
+                                if (Math.abs(list.get(i)) < EPSILON) continue;
+                                else list2.add(list.get(i) / list.get(j));
+                            }
+                            // solve the new list2
+                            //if works then return true;
+                            //if not, kick out the last element and continue the loop;
+                            if (solvePoint(list2)) return true;
+                            list2.remove(list2.size() - 1);
+                        }
+                    }
+                }
+            }
+            //default is false if we don't find one solution;
+            return false;
+        }
+    }
+</code></pre>
+
+<!--                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
+
+                <ul>
+                    <li>Donec nulla non metus auctor fringilla.
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </ul>
+                    </li>
+                    <li>Donec nulla non metus auctor fringilla.</li>
+                    <li>Donec nulla non metus auctor fringilla.</li>
+                </ul>
+
+                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+
+                <p class="s-content__tags">
+                    <span>Post Tags</span>
+
+                    <span class="s-content__tag-list">
+                        <a href="#0">orci</a>
+                        <a href="#0">lectus</a>
+                        <a href="#0">varius</a>
+                        <a href="#0">turpis</a>
+                    </span>
+                </p> <!-- end s-content__tags -->
+
+<!--                <div class="s-content__author">
+                    <img src="images/avatars/user-03.jpg" alt="">
+
+                    <div class="s-content__author-about">
+                        <h4 class="s-content__author-name">
+                            <a href="#0">Jonathan Doe</a>
+                        </h4>
+                    
+                        <p>Alias aperiam at debitis deserunt dignissimos dolorem doloribus, fuga fugiat impedit laudantium magni maxime nihil nisi quidem quisquam sed ullam voluptas voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+
+                        <ul class="s-content__author-social">
+                           <li><a href="#0">Facebook</a></li>
+                           <li><a href="#0">Twitter</a></li>
+                           <li><a href="#0">GooglePlus</a></li>
+                           <li><a href="#0">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="s-content__pagenav">
+                    <div class="s-content__nav">
+                        <div class="s-content__prev">
+                            <a href="#0" rel="prev">
+                                <span>Previous Post</span>
+                                Tips on Minimalist Design 
+                            </a>
+                        </div>
+                        <div class="s-content__next">
+                            <a href="#0" rel="next">
+                                <span>Next Post</span>
+                                Less Is More 
+                            </a>
+                        </div>
+                    </div>
+                </div> -->  <!-- end s-content__pagenav -->
+
+            </div> <!-- end s-content__main -->
+
+        </article>
+
+
+    </section> <!-- s-content -->
+
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+    
+        <div class="s-footer__main">
+            <div class="row">
+                
+    
+                <div class="col-two md-four mob-full s-footer__social">
+                        
+                    <h4>Social</h4>
+    
+                    <ul class="s-footer__linklist">
+                        <li><a href="https://www.linkedin.com/in/zhengyu-zhu-%E6%9C%B1%E6%94%BF%E5%AE%87-1b83b7113/">LinkedIn</a></li>
+                    </ul>
+    
+                </div> <!-- end s-footer__social -->
+    
+               
+    
+            </div>
+        </div> <!-- end s-footer__main -->
+    
+        <div class="s-footer__bottom">
+            <div class="row">
+                <div class="col-full">
+                    <div class="s-footer__copyright">
+                        <span>© Copyright Apoptoxin 2020</span> 
+                        <span>Site  by Jeromy Zhu</span>
+                    </div>
+    
+                    <div class="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end s-footer__bottom -->
+    
+    </footer> <!-- end s-footer -->
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

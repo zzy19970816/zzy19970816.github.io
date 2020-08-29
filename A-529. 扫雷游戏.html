@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Algorithm 529</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+    <!-- pageheader
+    ================================================== -->
+    <div class="s-pageheader">
+
+        <header class="header">
+            <div class="header__content row">
+
+                <div class="header__logo">
+                    <a class="logo" href="index.html">
+                        <img src="images/logo.svg" alt="Homepage">
+                    </a>
+                </div> <!-- end header__logo -->
+
+
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+                <nav class="header__nav-wrap">
+
+                    <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                    <ul class="header__nav">
+                        <li><a href="index.html" title="">Home</a></li>
+                        
+                    </ul> <!-- end header__nav -->
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav> <!-- end header__nav-wrap -->
+
+            </div> <!-- header-content -->
+        </header> <!-- header -->
+
+    </div> <!-- end s-pageheader -->
+
+
+    <!-- s-content
+    ================================================== -->
+    <section class="s-content s-content--narrow s-content--no-padding-bottom">
+
+        <article class="row format-standard">
+
+            <div class="s-content__header col-full">
+                <h1 class="s-content__header-title">
+                    529. 扫雷游戏
+                </h1>
+                <ul class="s-content__header-meta">
+                    <li class="date">August 15, 2020</li>
+                    <li class="cat">
+                        <a >Leetcode</a>
+                    </li>
+                </ul>
+            </div> <!-- end s-content__header -->
+    
+            <div class="s-content__media col-full">
+                <div class="s-content__post-thumb">
+                    <img src="images/photo/000031%20(2).JPG" 
+                         srcset="images/photo/000031%20(2).JPG 2000w, 
+                                 images/photo/000031%20(2).JPG 1000w, 
+                                 images/photo/000031%20(2).JPG 500w" 
+                         sizes="(max-width: 2000px) 100vw, 2000px" alt="" >
+                </div>
+            </div> <!-- end s-content__media -->
+
+            <div class="col-full s-content__main">
+
+                <p class="lead">让我们一起来玩扫雷游戏！</p>
+				<p class="lead">给定一个代表游戏板的二维字符矩阵。 'M' 代表一个未挖出的地雷，'E' 代表一个未挖出的空方块，'B' 代表没有相邻（上，下，左，右，和所有4个对角线）地雷的已挖出的空白方块，数字（'1' 到 '8'）表示有多少地雷与这块已挖出的方块相邻，'X' 则表示一个已挖出的地雷。</p>
+				<p class="lead">现在给出在所有未挖出的方块中（'M'或者'E'）的下一个点击位置（行和列索引），根据以下规则，返回相应位置被点击后对应的面板：</p>
+				<p class="lead">1. 如果一个地雷（'M'）被挖出，游戏就结束了- 把它改为 'X'。</p>
+				<p class="lead">2. 如果一个没有相邻地雷的空方块（'E'）被挖出，修改它为（'B'），并且所有和其相邻的未挖出方块都应该被递归地揭露。</p>
+				<p class="lead">3. 如果一个至少与一个地雷相邻的空方块（'E'）被挖出，修改它为数字（'1'到'8'），表示相邻地雷的数量。</p>
+				<p class="lead">4. 如果在此次点击中，若无更多方块可被揭露，则返回面板。</p>
+				<!--<p class="lead">给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
+				-->
+				<p class="lead">示例 1：</p>
+				<p class="lead"></p>
+				<pre><code>
+输入: 
+
+[['E', 'E', 'E', 'E', 'E'],
+ ['E', 'E', 'M', 'E', 'E'],
+ ['E', 'E', 'E', 'E', 'E'],
+ ['E', 'E', 'E', 'E', 'E']]
+
+Click : [3,0]
+
+输出: 
+
+[['B', '1', 'E', '1', 'B'],
+ ['B', '1', 'M', '1', 'B'],
+ ['B', '1', '1', '1', 'B'],
+ ['B', 'B', 'B', 'B', 'B']]
+			
+				</code></pre>
+				
+				<p class="lead">示例 2：</p>
+				<p class="lead"></p>
+<pre><code>
+输入: 
+
+[['B', '1', 'E', '1', 'B'],
+ ['B', '1', 'M', '1', 'B'],
+ ['B', '1', '1', '1', 'B'],
+ ['B', 'B', 'B', 'B', 'B']]
+
+Click : [1,2]
+
+输出: 
+
+[['B', '1', 'E', '1', 'B'],
+ ['B', '1', 'X', '1', 'B'],
+ ['B', '1', '1', '1', 'B'],
+ ['B', 'B', 'B', 'B', 'B']]
+</code></pre>
+				<p class="lead">注意：</p>
+				<p class="lead"></p>
+				<p class="lead">输入矩阵的宽和高的范围为 [1,50]。</p>
+				<p class="lead">点击的位置只能是未被挖出的方块 ('M' 或者 'E')，这也意味着面板至少包含一个可点击的方块。</p>
+				<p class="lead">输入面板不会是游戏结束的状态（即有地雷已被挖出）。</p>
+				<p class="lead">简单起见，未提及的规则在这个问题中可被忽略。例如，当游戏结束时你不需要挖出所有地雷，考虑所有你可能赢得游戏或标记方块的情况。</p>
+				
+				
+				
+				
+
+
+
+ 
+
+
+                
+				<!--<p>这道题个人感觉又快又简单肯定是双指针，但是作为一个萌新接触算法不久，还是想练一练怎么写kmp算法。希望能在练习中锻炼自己！
+
+                </p>-->
+
+
+<!--                <h2>Large Heading</h2>
+
+                <p>Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus <a href="http://#">omnis voluptas assumenda est</a> id quod maxime placeat facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et.</p>
+
+                <blockquote><p>This is a simple example of a styled blockquote. A blockquote tag typically specifies a section that is quoted from another source of some sort, or highlighting text in your post.</p></blockquote>
+
+                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+
+                <h3>Smaller Heading</h3>
+
+                <p>Dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
+ -->
+ 
+				<h2>傻瓜式DFS</h2>
+				<p>今天这题目还是挺有趣的，中心思想还是从click的那个位置开始深度优先搜索，然后把所有能遍历的地方都遍历一遍。难点在于对于继续遍历条件的理解，特别是如果遇到了数字就不能继续dfs，也就是例子二为什么还会剩下一块E的原因。</p>
+<pre><code>
+class Solution {
+
+    //determine the move direction
+    int[] moveX = new int[]{0, 1, 1, 1, 0, -1, -1, -1};
+    int[] moveY = new int[]{-1, -1, 0, 1, 1, 1, 0, -1};
+
+    public char[][] updateBoard(char[][] board, int[] click) {
+        dfs(board, click[0], click[1]);
+        return board;
+    }
+
+    //dfs function
+    public void dfs(char[][] board, int x, int y){
+        //if the first click is a mine, then change the char and return;
+        if (board[x][y] == 'M'){
+            board[x][y] = 'X';
+            return;
+        }else {
+            //first we have to count the number of adjacent mine
+            int count = 0;
+            for (int i = 0; i < 8; i++){
+                int xx = x + moveX[i];
+                int yy = y + moveY[i];
+                //out of bound, then ignore
+                if (xx < 0 || yy < 0 || xx >= board.length || yy >= board[0].length){
+                    continue;
+                }
+                if (board[xx][yy] == 'M'){
+                    count++;
+                }
+            }
+            // if there are mines, change the char to the number. Else keep dfs;
+            if (count > 0){
+                board[x][y] = (char)(count + '0');
+            }else {
+                board[x][y] = 'B';
+                //keep searching
+                for (int i = 0; i < 8; i++){
+                    int newX = x + moveX[i];
+                    int newY = y + moveY[i];
+                    //note: only the adjacent part which is 'E' can continue dfs, others like 'M' 'B' or 'number' can't do this
+                    if (newX < 0 || newY < 0 || newX >= board.length || newY >= board[0].length || board[newX][newY] != 'E'){
+                        continue;
+                    }
+                    dfs(board, newX, newY);
+                }
+            }
+        }
+    }
+}
+
+</code></pre>
+
+<!--                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
+
+                <ul>
+                    <li>Donec nulla non metus auctor fringilla.
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </ul>
+                    </li>
+                    <li>Donec nulla non metus auctor fringilla.</li>
+                    <li>Donec nulla non metus auctor fringilla.</li>
+                </ul>
+
+                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+
+                <p class="s-content__tags">
+                    <span>Post Tags</span>
+
+                    <span class="s-content__tag-list">
+                        <a href="#0">orci</a>
+                        <a href="#0">lectus</a>
+                        <a href="#0">varius</a>
+                        <a href="#0">turpis</a>
+                    </span>
+                </p> <!-- end s-content__tags -->
+
+<!--                <div class="s-content__author">
+                    <img src="images/avatars/user-03.jpg" alt="">
+
+                    <div class="s-content__author-about">
+                        <h4 class="s-content__author-name">
+                            <a href="#0">Jonathan Doe</a>
+                        </h4>
+                    
+                        <p>Alias aperiam at debitis deserunt dignissimos dolorem doloribus, fuga fugiat impedit laudantium magni maxime nihil nisi quidem quisquam sed ullam voluptas voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+
+                        <ul class="s-content__author-social">
+                           <li><a href="#0">Facebook</a></li>
+                           <li><a href="#0">Twitter</a></li>
+                           <li><a href="#0">GooglePlus</a></li>
+                           <li><a href="#0">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="s-content__pagenav">
+                    <div class="s-content__nav">
+                        <div class="s-content__prev">
+                            <a href="#0" rel="prev">
+                                <span>Previous Post</span>
+                                Tips on Minimalist Design 
+                            </a>
+                        </div>
+                        <div class="s-content__next">
+                            <a href="#0" rel="next">
+                                <span>Next Post</span>
+                                Less Is More 
+                            </a>
+                        </div>
+                    </div>
+                </div> -->  <!-- end s-content__pagenav -->
+
+            </div> <!-- end s-content__main -->
+
+        </article>
+
+
+    </section> <!-- s-content -->
+
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+    
+        <div class="s-footer__main">
+            <div class="row">
+                
+    
+                <div class="col-two md-four mob-full s-footer__social">
+                        
+                    <h4>Social</h4>
+    
+                    <ul class="s-footer__linklist">
+                        <li><a href="https://www.linkedin.com/in/zhengyu-zhu-%E6%9C%B1%E6%94%BF%E5%AE%87-1b83b7113/">LinkedIn</a></li>
+                    </ul>
+    
+                </div> <!-- end s-footer__social -->
+    
+               
+    
+            </div>
+        </div> <!-- end s-footer__main -->
+    
+        <div class="s-footer__bottom">
+            <div class="row">
+                <div class="col-full">
+                    <div class="s-footer__copyright">
+                        <span>© Copyright Apoptoxin 2020</span> 
+                        <span>Site  by Jeromy Zhu</span>
+                    </div>
+    
+                    <div class="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end s-footer__bottom -->
+    
+    </footer> <!-- end s-footer -->
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

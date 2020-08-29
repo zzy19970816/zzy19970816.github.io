@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Algorithm 459</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body id="top">
+
+    <!-- pageheader
+    ================================================== -->
+    <div class="s-pageheader">
+
+        <header class="header">
+            <div class="header__content row">
+
+                <div class="header__logo">
+                    <a class="logo" href="index.html">
+                        <img src="images/logo.svg" alt="Homepage">
+                    </a>
+                </div> <!-- end header__logo -->
+
+
+                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
+
+                <nav class="header__nav-wrap">
+
+                    <h2 class="header__nav-heading h6">Site Navigation</h2>
+
+                    <ul class="header__nav">
+                        <li><a href="index.html" title="">Home</a></li>
+                        
+                    </ul> <!-- end header__nav -->
+
+                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
+
+                </nav> <!-- end header__nav-wrap -->
+
+            </div> <!-- header-content -->
+        </header> <!-- header -->
+
+    </div> <!-- end s-pageheader -->
+
+
+    <!-- s-content
+    ================================================== -->
+    <section class="s-content s-content--narrow s-content--no-padding-bottom">
+
+        <article class="row format-standard">
+
+            <div class="s-content__header col-full">
+                <h1 class="s-content__header-title">
+                    459. 重复的子字符串
+                </h1>
+                <ul class="s-content__header-meta">
+                    <li class="date">August 24, 2020</li>
+                    <li class="cat">
+                        <a >Leetcode</a>
+                    </li>
+                </ul>
+            </div> <!-- end s-content__header -->
+    
+            
+
+            <div class="col-full s-content__main">
+
+                <p class="lead">给定一个非空的字符串，判断它是否可以由它的一个子串重复多次构成。给定的字符串只含有小写英文字母，并且长度不超过10000。</p>
+				<p class="lead">示例 1：</p>
+				<p class="lead"></p>
+				<p class="lead">输入: "abab"</p>
+				<p class="lead">输出: True</p>
+				<p class="lead">解释: 可由子字符串 "ab" 重复两次构成。</p>
+				
+				<p class="lead">示例 2：</p>
+				<p class="lead"></p>
+				<p class="lead">输入: "abcabcabcabc"</p>
+				<p class="lead">输出: True</p>
+				<p class="lead">解释: 可由子字符串 "abc" 重复四次构成。 (或者子字符串 "abcabc" 重复两次构成。)</p>
+ 
+
+
+                
+				<p>比较傻瓜式的比较方法，因为一个字符串是由好多个子串重复得来的，那么我的子串末尾肯定是我字符串末尾那个字符。
+然后我子串长度一定是会小于整个长度的一半的，不然不能成倍。
+                </p>
+				<p>好了，我们就先重头开始寻找跟最后一个字符一样，而且我这段长度能被整段长度整除的字符子串。
+找到这样的子串之后，我们是不是就能把整个字符串分割成m段了呢？</p>
+				<p>之后是不是比较一下这m段是不是都一样，就可以得出我整个字符串是不是重复的呢？
+附上代码和运行结果！</p>
+
+			<div class="s-content__media col-full">
+                <div class="s-content__post-thumb">
+					<div align = "center">
+                    <img src="images/Algorithm/459.png" 
+                         srcset="images/Algorithm/459.png , 
+                                 images/Algorithm/459.png , 
+                                 images/Algorithm/459.png " 
+                         sizes="(max-width: 2000px) 100vw, 2000px" alt="" >
+						 </div>
+                </div>
+            </div> <!-- end s-content__media -->
+
+
+<!--                <h2>Large Heading</h2>
+
+                <p>Harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus <a href="http://#">omnis voluptas assumenda est</a> id quod maxime placeat facere possimus, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et.</p>
+
+                <blockquote><p>This is a simple example of a styled blockquote. A blockquote tag typically specifies a section that is quoted from another source of some sort, or highlighting text in your post.</p></blockquote>
+
+                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+
+                <h3>Smaller Heading</h3>
+
+                <p>Dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
+ -->
+<pre><code>
+    class Solution {
+        public boolean repeatedSubstringPattern(String s) {
+            int n = s.length();
+            char last = s.charAt(n-1);
+            for (int i = 0; i < n / 2; i++){
+                if (s.charAt(i) == last && n % (i + 1) == 0){
+                    int m = n / (i + 1);
+                    int j = 1;
+                    while (j <= m - 1){
+                        if (s.substring(0, (i + 1)).equals(s.substring(j * (i + 1), (j + 1) * (i + 1)))){
+                            j++;
+                        }else break;
+                    }
+                    if (j == m) return true;
+                } else continue;
+            }
+            return false;
+        }
+    }
+</code></pre>
+
+<!--                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
+
+                <ul>
+                    <li>Donec nulla non metus auctor fringilla.
+                        <ul>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                            <li>Lorem ipsum dolor sit amet.</li>
+                        </ul>
+                    </li>
+                    <li>Donec nulla non metus auctor fringilla.</li>
+                    <li>Donec nulla non metus auctor fringilla.</li>
+                </ul>
+
+                <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.</p>
+
+                <p class="s-content__tags">
+                    <span>Post Tags</span>
+
+                    <span class="s-content__tag-list">
+                        <a href="#0">orci</a>
+                        <a href="#0">lectus</a>
+                        <a href="#0">varius</a>
+                        <a href="#0">turpis</a>
+                    </span>
+                </p> <!-- end s-content__tags -->
+
+<!--                <div class="s-content__author">
+                    <img src="images/avatars/user-03.jpg" alt="">
+
+                    <div class="s-content__author-about">
+                        <h4 class="s-content__author-name">
+                            <a href="#0">Jonathan Doe</a>
+                        </h4>
+                    
+                        <p>Alias aperiam at debitis deserunt dignissimos dolorem doloribus, fuga fugiat impedit laudantium magni maxime nihil nisi quidem quisquam sed ullam voluptas voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+
+                        <ul class="s-content__author-social">
+                           <li><a href="#0">Facebook</a></li>
+                           <li><a href="#0">Twitter</a></li>
+                           <li><a href="#0">GooglePlus</a></li>
+                           <li><a href="#0">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="s-content__pagenav">
+                    <div class="s-content__nav">
+                        <div class="s-content__prev">
+                            <a href="#0" rel="prev">
+                                <span>Previous Post</span>
+                                Tips on Minimalist Design 
+                            </a>
+                        </div>
+                        <div class="s-content__next">
+                            <a href="#0" rel="next">
+                                <span>Next Post</span>
+                                Less Is More 
+                            </a>
+                        </div>
+                    </div>
+                </div> -->  <!-- end s-content__pagenav -->
+
+            </div> <!-- end s-content__main -->
+
+        </article>
+
+
+    </section> <!-- s-content -->
+
+    <!-- s-footer
+    ================================================== -->
+    <footer class="s-footer">
+    
+        <div class="s-footer__main">
+            <div class="row">
+                
+    
+                <div class="col-two md-four mob-full s-footer__social">
+                        
+                    <h4>Social</h4>
+    
+                    <ul class="s-footer__linklist">
+                        <li><a href="https://www.linkedin.com/in/zhengyu-zhu-%E6%9C%B1%E6%94%BF%E5%AE%87-1b83b7113/">LinkedIn</a></li>
+                    </ul>
+    
+                </div> <!-- end s-footer__social -->
+    
+               
+    
+            </div>
+        </div> <!-- end s-footer__main -->
+    
+        <div class="s-footer__bottom">
+            <div class="row">
+                <div class="col-full">
+                    <div class="s-footer__copyright">
+                        <span>© Copyright Apoptoxin 2020</span> 
+                        <span>Site  by Jeromy Zhu</span>
+                    </div>
+    
+                    <div class="go-top">
+                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end s-footer__bottom -->
+    
+    </footer> <!-- end s-footer -->
+
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
